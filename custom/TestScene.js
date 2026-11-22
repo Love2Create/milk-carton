@@ -11,10 +11,10 @@ export default class TestScene extends ENGINE.BaseScene{
         // this.environment.cameraContainer.position.y = 4;
         const lightCon = new ENGINE.LightController({ environment: this.environment });
         const light1 = lightCon.addLight({ type: ENGINE.LightTypes.DIRECTIONAL, intensity: 2, target: { x: 4, y: 12, z: -12 } });
-        console.log(light1);
+        // console.log(light1);
         this.testCon = new TestController({ environment: this.environment });
         const ground = new ENGINE.GroundController({ environment: this.environment }, ENGINE.basicColorMaterial('00cc00'));
-        this.environment.cameraContainer.position.z = 10;
+        this.environment.cameraContainer.position.z = 6;
     }
     canResize(){
         return true;

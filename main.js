@@ -26,16 +26,19 @@ function move(e){
     const { x, y } = ENGINE.processPointerEvent(e);
     value = x - offset;
     testScene.testCon.rotation = value;
-    console.log('event', e);
+    // console.log('event', e);
 }
 
 function up () {
     dragging = false;
 }
 
-element.addEventListener("mousedown", down);
-element.addEventListener("mousemove", move);
-element.addEventListener("mouseup", up);
+appElement.querySelector('canvas').addEventListener("mousedown", down);
+appElement.querySelector('canvas').addEventListener("mousemove", move);
+appElement.querySelector('canvas').addEventListener("mouseup", up);
+appElement.querySelector('canvas').addEventListener("touchstart", down);
+appElement.querySelector('canvas').addEventListener("touchmove", move);
+appElement.querySelector('canvas').addEventListener("touchend", up);
 
 const markers = [
     {

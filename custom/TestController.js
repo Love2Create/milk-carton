@@ -1,5 +1,6 @@
 import * as ENGINE from '../engine';
 import * as THREE from 'three';
+import jstrig from 'jstrig';
 
 export default class TestController extends ENGINE.BaseController{
     constructor(data){
@@ -35,9 +36,23 @@ export default class TestController extends ENGINE.BaseController{
         this.markers.forEach(item => {
             const { x, y } = ENGINE.getCanvasPosition(item.mesh, this.environment);
             const worldPosition = new THREE.Vector3();
-            item.mesh.getWorldPosition(worldPosition)
-            const vis = worldPosition.z > 0 ? 'block' : 'none';
-            item.el.setAttribute('style', `left: ${x}px; top: ${y}px; display: ${vis};`);
+            item.mesh.getWorldPosition(worldPosition);
+            const angle = jstrig.angle({ x: worldPosition.x, y: worldPosition.z }, { x: 0, y: 0 });
+            const elCLasses = [...item.el.classList];
+            if (Math.abs(angle) < 45) {
+                item.el.classList.add('show-content');
+                if (elCLasses.includes('hide-content')) {
+                    item.el.classList.remove('hide-content');
+                }
+            }
+            else {
+                item.el.classList.add('hide-content');
+                if (elCLasses.includes('show-content')) {
+                    item.el.classList.remove('show-content');
+                }
+            }
+            item.el.setAttribute('style', `left: ${x}px; top: ${y}px;`);
+            // console.log(item.id, jstrig.angle({ x: worldPosition.x, y: worldPosition.z }, { x: 0, y: 0 }))
         });
         
     }
@@ -64,7 +79,7 @@ export default class TestController extends ENGINE.BaseController{
         btn.innerHTML = '+';
         el.append(btn);
         btn.addEventListener('click', (e) => {
-            console.log([...e.target.classList]);
+            // console.log([...e.target.classList]);
             if ([...e.target.classList].includes('active')) {
                 e.target.classList.remove('active');
             }

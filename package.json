@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "gsap": "^3.10.4",
+    "jstrig": "^1.0.4",
     "three": "^0.134.0"
   },
   "devDependencies": {
