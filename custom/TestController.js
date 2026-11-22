@@ -12,7 +12,6 @@ export default class TestController extends ENGINE.BaseController{
         const box = this.environment.createBox({ type: ENGINE.ShapeTypes.BOX, position: {x: 0, y: 0, z: -5}, size: { x: 2, y: 2, z: 2 }, material: mat });
 
         this.model = new ENGINE.CustomMeshController({ environment: this.environment }, 'https://love2create.github.io/resources/milk-carton.glb');
-        console.log('model', this.model);
 
         this.rotation = -60;
 
@@ -60,6 +59,26 @@ export default class TestController extends ENGINE.BaseController{
         const el = document.createElement('div');
         el.setAttribute('class', 'marker');
         el.setAttribute('id', id);
+
+        const btn = document.createElement('button');
+        btn.innerHTML = '+';
+        el.append(btn);
+        btn.addEventListener('click', (e) => {
+            console.log([...e.target.classList]);
+            if ([...e.target.classList].includes('active')) {
+                e.target.classList.remove('active');
+            }
+            else {
+                e.target.classList.add('active');
+            }
+        });
+
+        const content = document.createElement('div');
+        content.setAttribute('class', 'marker-conent');
+        content.innerHTML = `<h2>${headline}</h2><p>${text}</p>`;
+
+        el.append(content);
+
         overlay.append(el);
 
 

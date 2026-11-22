@@ -24,7 +24,7 @@ function move(e){
         return;
     }
     const { x, y } = ENGINE.processPointerEvent(e);
-    value = x;
+    value = x - offset;
     testScene.testCon.rotation = value;
     console.log('event', e);
 }
@@ -52,6 +52,22 @@ const markers = [
         z: 1.4,
         headline: 'Test 2 header',
         text: 'Test 2 text',
+        overlay: element,
+    },
+    {
+        x: -1.4,
+        y: 2.5,
+        z: .2,
+        headline: 'Test 3 header',
+        text: 'Test 3 text',
+        overlay: element,
+    },
+    {
+        x: 1.4,
+        y: 6.2,
+        z: 0,
+        headline: 'Test 4 header',
+        text: 'Test 4 text',
         overlay: element,
     },
 ];
