@@ -29,7 +29,7 @@ export default class Environment3d{
         
     }
     createCamera(width, height) {
-        return  new THREE.PerspectiveCamera( 75, width / height, 0.1, 1000 );
+        return  new THREE.PerspectiveCamera( 20, width / height, 0.1, 1000 );
     }
     registerController (controller) {
         this.controllers.push({ controller, type: controller.getControllerType(), id: controller.controllerID });
