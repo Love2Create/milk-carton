@@ -40,35 +40,37 @@ appElement.querySelector('canvas').addEventListener("touchstart", down);
 appElement.querySelector('canvas').addEventListener("touchmove", move);
 appElement.querySelector('canvas').addEventListener("touchend", up);
 
+const scaleFactor = .38;
+
 const markers = [
     {
-        x: .5,
-        y: 3,
-        z: 1.4,
+        x: .5 * scaleFactor,
+        y: 3 * scaleFactor,
+        z: 1.4 * scaleFactor,
         headline: 'Test 1 header',
         text: 'Test 1 text',
         overlay: element,
     },
     {
-        x: -.5,
-        y: 5.5,
-        z: 1.4,
+        x: -.5 * scaleFactor,
+        y: 5.5 * scaleFactor,
+        z: 1.4 * scaleFactor,
         headline: 'Test 2 header',
         text: 'Test 2 text',
         overlay: element,
     },
     {
-        x: -1.4,
-        y: 2.5,
-        z: .2,
+        x: -1.2 * scaleFactor,
+        y: 2.5 * scaleFactor,
+        z: .2 * scaleFactor,
         headline: 'Test 3 header',
         text: 'Test 3 text',
         overlay: element,
     },
     {
-        x: 1.4,
-        y: 6.2,
-        z: 0,
+        x: 1.8 * scaleFactor,
+        y: 6.2 * scaleFactor,
+        z: 0 * scaleFactor,
         headline: 'Test 4 header',
         text: 'Test 4 text',
         overlay: element,
