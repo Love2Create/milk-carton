@@ -22,7 +22,7 @@ export default class TestScene extends ENGINE.BaseScene{
         this.testCon = new TestController({ environment: this.environment });
         // const ground = new ENGINE.GroundController({ environment: this.environment }, ENGINE.basicColorMaterial('00cc00'));
         this.environment.cameraContainer.position.z = 20;
-        this.environment.cameraContainer.position.y = 5.75;
+        this.environment.cameraContainer.position.y = 4.125;
         this.environment.cameraContainer.rotation.x = ENGINE.degreesToRadians(-14);
     }
     canResize(){

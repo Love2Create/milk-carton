@@ -83,5 +83,3 @@ markers.map((item, index) => ({ ...item, id: `maker${index}` })).forEach(item =>
 
 
 
-
-

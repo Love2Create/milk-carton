@@ -6,17 +6,22 @@
   left: 0;
   bottom: 0;
   right: 0;
+  touch-action: pan-y;
 }
 
 #overlay {
-  pointer-events: none;
+  /* pointer-events: none; */
+  width: 0;
+  height: 0;
 }
-#app canvas{
+
+/* #app canvas{
   
-}
+} */
+
 .marker {
   position: absolute;
-  pointer-events: none;
+  /* pointer-events: none; */
   -webkit-user-select: none;      
   -moz-user-select: none;
   -ms-user-select: none;
@@ -44,16 +49,22 @@
 }
 
 .marker .marker-conent {
-  /* display: none; */
+  pointer-events: none;
+  display: none;
   text-align: center;
   transform: translateX(-50%);
 }
 
 .marker .marker-conent {
-  display: block;
+  /* display: block; */
   padding: 16px 8px 8px;
   background-color: rgba(255, 255, 255, .8);
   border: 1px solid #666666;
+  min-width: 100px;
+}
+
+.marker button.active + .marker-conent {
+  display: block;
 }
 
 .marker .marker-conent h2 {
