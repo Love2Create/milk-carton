@@ -39,8 +39,9 @@ export default class TestController extends ENGINE.BaseController{
             item.mesh.getWorldPosition(worldPosition);
             const angle = jstrig.angle({ x: worldPosition.x, y: worldPosition.z }, { x: 0, y: 0 });
             const elCLasses = [...item.el.classList];
-            if (Math.abs(angle) < 45) {
+            if (Math.abs(angle) < 60) {
                 item.el.classList.add('show-content');
+                item.el.classList.add('pulse');
                 if (elCLasses.includes('hide-content')) {
                     item.el.classList.remove('hide-content');
                 }
@@ -49,6 +50,7 @@ export default class TestController extends ENGINE.BaseController{
                 item.el.classList.add('hide-content');
                 if (elCLasses.includes('show-content')) {
                     item.el.classList.remove('show-content');
+                    item.el.classList.remove('pulse');
                 }
             }
             item.el.setAttribute('style', `left: ${x}px; top: ${y}px;`);
@@ -67,9 +69,10 @@ export default class TestController extends ENGINE.BaseController{
         marker.mesh.position.x = x;
         marker.mesh.position.y = y;
         marker.mesh.position.z = z;
-        marker.mesh.scale.x = 0;
-        marker.mesh.scale.y = 0;
-        marker.mesh.scale.z = 0;
+        const scaleOfMarker = 0;
+        marker.mesh.scale.x = scaleOfMarker;
+        marker.mesh.scale.y = scaleOfMarker;
+        marker.mesh.scale.z = scaleOfMarker;
 
         const el = document.createElement('div');
         el.setAttribute('class', 'marker');
