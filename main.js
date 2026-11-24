@@ -68,9 +68,9 @@ const markers = [
         overlay: element,
     },
     {
-        x: 1.4 * scaleFactor,
-        y: 5.7 * scaleFactor,
-        z: 1 * scaleFactor,
+        x: 1.7 * scaleFactor,
+        y: 6 * scaleFactor,
+        z: .25 * scaleFactor,
         headline: 'Test 4 header',
         text: 'Test 4 text',
         overlay: element,

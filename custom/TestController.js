@@ -39,7 +39,7 @@ export default class TestController extends ENGINE.BaseController{
             item.mesh.getWorldPosition(worldPosition);
             const angle = jstrig.angle({ x: worldPosition.x, y: worldPosition.z }, { x: 0, y: 0 });
             const elCLasses = [...item.el.classList];
-            if (Math.abs(angle) < 60) {
+            if (Math.abs(angle) < 45) {
                 item.el.classList.add('show-content');
                 item.el.classList.add('pulse');
                 if (elCLasses.includes('hide-content')) {
