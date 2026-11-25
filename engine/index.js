@@ -9,7 +9,7 @@ import LightController, { LightTypes } from "./classes/controllers/LightControll
 
 import {setRotation, RotationAxis, getRaycastIntersections, object3DSelector, createPrimitive, getCollisions, getDistance, basicImageMaterial, basicColorMaterial, createEmptyContainer, getCanvasPosition} from './utils/THREEHelpers';
 
-import {nextTick, degreesToRadians, radiansToDegrees, ShapeTypes, defaultDimensionValues, processPointerEvent, generateID, getInheritanceChain, getParameterByName, cubicBezier, inside} from './utils/Utilities';
+import { nextTick, degreesToRadians, radiansToDegrees, ShapeTypes, defaultDimensionValues, processPointerEvent, generateID, getInheritanceChain, getParameterByName, cubicBezier, inside, resorcesRoot } from './utils/Utilities';
 
 export {
     BaseController,
@@ -43,7 +43,8 @@ export {
     inside,
     LoadStates,
     ControllerTypes,
-    LightTypes
+    LightTypes,
+    resorcesRoot,
 };
 
 // export BaseScene

@@ -211,3 +211,17 @@ body {
     min-width: 120px;
 }
 
+#pointerImage img {
+  width: 200px;
+  /* opacity: 1; */
+  transform: translate(-50%, -50%);
+}
+
+#pointerImage{
+  position: absolute;
+  left: 50vw;
+  top: 50vh;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}

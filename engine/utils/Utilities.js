@@ -4,6 +4,9 @@ const ShapeTypes = {
     SPHERE: 'sphere',
     CYLINDER: 'cylinder'
 }
+
+const resorcesRoot = 'https://love2create.github.io/resources/';
+
 function nextTick() {
     return new Promise(resolve => {
         setTimeout(resolve, 0);
@@ -81,4 +84,4 @@ function inside(point, vs) {
     
     return _inside;
 }
-export {nextTick, degreesToRadians, radiansToDegrees, ShapeTypes, defaultDimensionValues, processPointerEvent, generateID, getInheritanceChain, getParameterByName, cubicBezier, inside};
+export { nextTick, degreesToRadians, radiansToDegrees, ShapeTypes, defaultDimensionValues, processPointerEvent, generateID, getInheritanceChain, getParameterByName, cubicBezier, inside, resorcesRoot };

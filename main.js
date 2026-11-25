@@ -1,23 +1,23 @@
 import * as ENGINE from './engine';
 import TestScene from "./custom/TestScene";
-import Overlay from "./engine/classes/Overlay";
+import gsap from 'gsap';
 
 const appElement = document.querySelector('#app');
 const testScene = new TestScene(appElement);
-// const overlay = new Overlay(document.querySelector("#overlay"), (item) => {
-//     testScene.setRotation(item.value);
-// });
 
 let dragging = false;
 let offset = 0;
 let value = testScene.testCon.rotation;
+let didDrag = false;
 let element = document.querySelector("#overlay");
 
 function down(e){
+    didDrag = true;
     dragging = true;
     element.style.pointerEvents = "none";
     const {x, y} = ENGINE.processPointerEvent(e);
     offset = x - value;
+    document.querySelector("#pointerImage").style.display = 'none';
 };
 
 function move(e){
@@ -27,7 +27,6 @@ function move(e){
     const { x, y } = ENGINE.processPointerEvent(e);
     value = x - offset;
     testScene.testCon.rotation = value;
-    // console.log('event', e);
 }
 
 function up () {
@@ -41,6 +40,9 @@ appElement.querySelector('canvas').addEventListener("mouseup", up);
 appElement.querySelector('canvas').addEventListener("touchstart", down);
 appElement.querySelector('canvas').addEventListener("touchmove", move);
 appElement.querySelector('canvas').addEventListener("touchend", up);
+
+document.querySelector("#pointerImage").innerHTML = `<img src="${ENGINE.resorcesRoot}Hand_03.svg" />`;
+document.querySelector("#pointerImage").style = `transform: translateX(-${testScene.testCon.rotation}px)`;
 
 const scaleFactor = .38;
 
@@ -83,5 +85,41 @@ markers.map((item, index) => ({ ...item, id: `maker${index}` })).forEach(item =>
     testScene.testCon.addMarker(item);
 });
 
+function movePointerImage(){
+    const pos = {x: testScene.testCon.rotation};
+    const part1 = testScene.testCon.rotation - 50;
+    const part2 = testScene.testCon.rotation;
+    gsap.to(pos, { 
+        duration: .5, 
+        x: part1, 
+        onUpdate: () => { 
+            if (didDrag) {
+                return;
+            }
+            document.querySelector("#pointerImage").style.marginLeft = `${pos.x}px`;
+            testScene.testCon.rotation = pos.x;
+        },
+        onComplete: () => {
+            gsap.to(pos, { 
+                duration: .5,
+                x: part2, 
+                onUpdate: () => {
+                    if (didDrag) {
+                        return;
+                    }
+                    document.querySelector("#pointerImage").style.marginLeft = `${pos.x}px`;
+                    testScene.testCon.rotation = pos.x;
+                },
+                onComplete: () => {
+                    if (!didDrag) {
+                        setTimeout(movePointerImage, 2000);
+                    }
+                },
+            })
+        }
+    })
+}
+
+movePointerImage();
 
 

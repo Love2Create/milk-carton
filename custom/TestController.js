@@ -12,7 +12,7 @@ export default class TestController extends ENGINE.BaseController{
         const mat = ENGINE.basicColorMaterial('cc0000');
         // const box = this.environment.createBox({ type: ENGINE.ShapeTypes.BOX, position: {x: 0, y: 0, z: -5}, size: { x: 2, y: 2, z: 2 }, material: mat });
 
-        this.model = new ENGINE.CustomMeshController({ environment: this.environment }, 'https://love2create.github.io/resources/MilkCarton.glb');
+        this.model = new ENGINE.CustomMeshController({ environment: this.environment }, `${ENGINE.resorcesRoot}MilkCarton.glb`);
 
         this.rotation = 250;
 
