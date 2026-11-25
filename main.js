@@ -10,13 +10,14 @@ const testScene = new TestScene(appElement);
 
 let dragging = false;
 let offset = 0;
-let value = 0;
+let value = testScene.testCon.rotation;
 let element = document.querySelector("#overlay");
 
 function down(e){
     dragging = true;
+    element.style.pointerEvents = "none";
     const {x, y} = ENGINE.processPointerEvent(e);
-    offset = x;
+    offset = x - value;
 };
 
 function move(e){
@@ -30,6 +31,7 @@ function move(e){
 }
 
 function up () {
+    element.style.pointerEvents = "all";
     dragging = false;
 }
 
