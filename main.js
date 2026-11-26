@@ -42,7 +42,7 @@ appElement.querySelector('canvas').addEventListener("touchmove", move);
 appElement.querySelector('canvas').addEventListener("touchend", up);
 
 document.querySelector("#pointerImage").innerHTML = `<img src="${ENGINE.resorcesRoot}Hand_03.svg" />`;
-document.querySelector("#pointerImage").style = `transform: translateX(-${testScene.testCon.rotation}px)`;
+document.querySelector("#pointerImage").style.transform = `translateX(-${testScene.testCon.rotation}px)`;
 
 const scaleFactor = .38;
 
@@ -110,16 +110,36 @@ function movePointerImage(){
                     document.querySelector("#pointerImage").style.marginLeft = `${pos.x}px`;
                     testScene.testCon.rotation = pos.x;
                 },
-                onComplete: () => {
-                    if (!didDrag) {
-                        setTimeout(movePointerImage, 2000);
-                    }
-                },
+                // onComplete: () => {
+                //     if (!didDrag) {
+                //         setTimeout(movePointerImage, 2000);
+                //     }
+                // },
             })
         }
     })
 }
 
-movePointerImage();
+// movePointerImage();
+
+
+const observer = new IntersectionObserver(
+    (entries, obs) => {
+        for (const entry of entries) {
+            if (entry.isIntersecting) {
+                movePointerImage();
+                // obs.unobserve(entry.target); // Stop watching once triggered
+            }
+        }
+    },
+    {
+        root: null, // null = viewport
+        rootMargin: '0px 0px 100px 0px', // Trigger 100px before entering
+        threshold: 0.25, // Trigger at 25% visibility
+    }
+);
+
+
+observer.observe(document.querySelector("#pointerImage img"));
 
 
