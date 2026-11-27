@@ -1,5 +1,5 @@
 body {
-  font-family: antique-olive-nord, sans-serif;
+  font-family: antique-olive,sans-serif;
 }
 #app, #overlay, #app canvas{
   width: 100vw;
@@ -62,6 +62,8 @@ body {
   /* border-color: white; */
   color: #ffffff;
   font-size: 40px;
+  font-family:  antique-olive,sans-serif;
+  font-weight: 800;
   box-shadow: 0 0 3px 3px rgba(0, 0, 0, .2);
   transition: transform .45s;
 }

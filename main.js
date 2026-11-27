@@ -27,6 +27,7 @@ function move(e){
     const { x, y } = ENGINE.processPointerEvent(e);
     value = x - offset;
     testScene.testCon.rotation = value;
+    console.log('rotation', testScene.testCon.rotation);
 }
 
 function up () {
@@ -41,7 +42,7 @@ appElement.querySelector('canvas').addEventListener("touchstart", down);
 appElement.querySelector('canvas').addEventListener("touchmove", move);
 appElement.querySelector('canvas').addEventListener("touchend", up);
 
-document.querySelector("#pointerImage").innerHTML = `<img src="${ENGINE.resorcesRoot}Hand_03.svg" />`;
+document.querySelector("#pointerImage").innerHTML = `<img alt="pointer" src="${ENGINE.resorcesRoot}Hand_03.svg" />`;
 document.querySelector("#pointerImage").style.transform = `translateX(-${testScene.testCon.rotation}px)`;
 
 const scaleFactor = .38;
@@ -87,10 +88,11 @@ markers.map((item, index) => ({ ...item, id: `maker${index}` })).forEach(item =>
 
 function movePointerImage(){
     const pos = {x: testScene.testCon.rotation};
-    const part1 = testScene.testCon.rotation - 50;
+    const part1 = testScene.testCon.rotation + 50;
     const part2 = testScene.testCon.rotation;
+    const autoSpeed = 1;
     gsap.to(pos, { 
-        duration: .5, 
+        duration: autoSpeed, 
         x: part1, 
         onUpdate: () => { 
             if (didDrag) {
@@ -101,7 +103,7 @@ function movePointerImage(){
         },
         onComplete: () => {
             gsap.to(pos, { 
-                duration: .5,
+                duration: autoSpeed,
                 x: part2, 
                 onUpdate: () => {
                     if (didDrag) {
@@ -110,11 +112,6 @@ function movePointerImage(){
                     document.querySelector("#pointerImage").style.marginLeft = `${pos.x}px`;
                     testScene.testCon.rotation = pos.x;
                 },
-                // onComplete: () => {
-                //     if (!didDrag) {
-                //         setTimeout(movePointerImage, 2000);
-                //     }
-                // },
             })
         }
     })

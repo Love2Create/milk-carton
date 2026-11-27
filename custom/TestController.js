@@ -79,15 +79,26 @@ export default class TestController extends ENGINE.BaseController{
         el.setAttribute('id', id);
 
         const btn = document.createElement('button');
+        btn.setAttribute('aria-label', 'hot-spot-open');
         btn.innerHTML = '+';
         el.append(btn);
         btn.addEventListener('click', (e) => {
             // console.log([...e.target.classList]);
             if ([...e.target.classList].includes('active')) {
                 e.target.classList.remove('active');
+                btn.setAttribute('aria-label', 'hot-spot-open');
             }
             else {
                 e.target.classList.add('active');
+                btn.setAttribute('aria-label', 'hot-spot-close');
+            }
+        });
+
+        btn.addEventListener('focus', (e) => {
+            if (e.target.matches(':focus-visible')) {
+                const targetId = e.target.parentNode.id;
+                const targetAngle = [-19, -19, 72, 265].find((item, index) => targetId === `maker${index}`);
+                this.rotation = targetAngle;
             }
         });
 
