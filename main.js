@@ -86,11 +86,11 @@ markers.map((item, index) => ({ ...item, id: `maker${index}` })).forEach(item =>
     testScene.testCon.addMarker(item);
 });
 
-function movePointerImage(){
+function movePointerImage(duration = 1){
     const pos = {x: testScene.testCon.rotation};
     const part1 = testScene.testCon.rotation + 50;
     const part2 = testScene.testCon.rotation;
-    const autoSpeed = 1;
+    const autoSpeed = duration;
     gsap.to(pos, { 
         duration: autoSpeed, 
         x: part1, 
@@ -117,20 +117,20 @@ function movePointerImage(){
     })
 }
 
-// movePointerImage();
+movePointerImage(.000001);
 
 
 const observer = new IntersectionObserver(
     (entries, obs) => {
         for (const entry of entries) {
             if (entry.isIntersecting) {
-                movePointerImage();
+                setTimeout(()=>{movePointerImage()}, 500);
                 // obs.unobserve(entry.target); // Stop watching once triggered
             }
         }
     },
     {
-        root: null, // null = viewport
+        root: document, // null = viewport
         rootMargin: '0px 0px 100px 0px', // Trigger 100px before entering
         threshold: 0.25, // Trigger at 25% visibility
     }
